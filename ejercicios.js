@@ -6,7 +6,7 @@ function calculadora()
     input.innerHTML="<p>Fecha de nacimiento</p><input type ='date' id = 'fecha'>"
     input.innerHTML+="<p>Tu nombre</p><input type ='text' id = 'nombre'>"
     input.innerHTML+="<button onclick ='ej1()'>Enviar></button>"
-
+    resultado.innerHTML=""
 }
 function ej1()
 {
@@ -33,7 +33,7 @@ function tirando()
 {
     input.innerHTML="<p>Ingrese una fruta</p><input type ='text' id = 'fruta'>"
     input.innerHTML+="<button onclick ='ej2()'>Enviar></button>"
-   
+    resultado.innerHTML=""
 }
 function ej2()
 {
@@ -62,6 +62,7 @@ function comparar()
     let comparacion1 = 10 == 10
     let comparacion2 = 10 === 10
     let mensaje
+    resultado.innerHTML=""
     if (comparacion1 == true)
     {
         mensaje = "Cuando se compara con dos = el resultado es true"
@@ -89,13 +90,14 @@ function yo()
         poblacion: "200000",
         extension: "1500000 km"
     }
-    let mensaje = ""
-
+    let mensaje=""
     for(const propiedad in ciudad)
     {
-        mensaje += (` ${propiedad}: ${ciudad [propiedad]} `)}
-        resultado.innerHTML += mensaje
+        mensaje += (` ${propiedad}: ${ciudad [propiedad]} `)
     }
+    input.innerHTML=""
+    resultado.innerHTML = mensaje
+}
     
  
 
@@ -113,11 +115,12 @@ function doble()
     mensaje += " array duplicado: "
     const arrayDuplicado = arrayNumeros.map(n => n * 2);
     for(let num of arrayDuplicado) 
-    {    console.log(`${num}`)
-
-    mensaje += num
+    {    
+        console.log(`${num}`)
+        mensaje += num
     }  
-    resultado.innerHTML += mensaje
+    input.innerHTML=""
+    resultado.innerHTML = mensaje
 }
 function triangulo()
 {
@@ -136,13 +139,12 @@ function triangulo()
         console.log(guiones + asteriscos + guiones)
 
     }
-    
-    
 }
 
 function nombres(){
     input.innerHTML="<p>Ingrese nombres separados por ,</p><input type ='text' id = 'nombres'>"
     input.innerHTML+="<button onclick ='ej7()'>Enviar></button>"
+    resultado.innerHTML=""
 }
 
 function ej7(){
@@ -163,6 +165,7 @@ function reemplazar()
     input.innerHTML+="<p>Ingrese palabra que deseas reemplazar</p><input type ='text' id = 'palabra1'>"
     input.innerHTML+="<p>Ingrese la palabra que quieres agregar</p><input type ='text' id = 'palabra2'>"
     input.innerHTML+="<button onclick ='ej8()'>Enviar></button>"
+    resultado.innerHTML=""
     
 }
 function ej8()
@@ -179,6 +182,7 @@ function cortar()
     input.innerHTML="<p>Ingrese una cadena de texto</p><input type ='text' id = 'frase'>"
     input.innerHTML+="<p>Ingrese un numero</p><input type ='int' id = 'numero'>"
     input.innerHTML+="<button onclick ='ej9()'>Enviar></button>"
+    resultado.innerHTML=""
 }
 function ej9()
 {
@@ -191,4 +195,37 @@ function ej9()
     mensaje = frase.slice(0, numero)
 }
 resultado.innerHTML=mensaje
+}
+function string()
+{
+    input.innerHTML="<p>Ingrese una lista de elementos separados por coma</p><input type ='text' id = 'lista'>"
+    input.innerHTML+="<button onclick ='ej10()'>Enviar></button>"
+    resultado.innerHTML=""
+}
+function ej10()
+{
+    let lista = document.getElementById("lista").value;
+      let array = lista.split(",")
+    let mensaje = array.map(e => e.trim()).join(" - ")
+    resultado.innerHTML = mensaje
+}
+function calculadora2()
+{
+    input.innerHTML  = "<p>Ingrese pedidos y totales en formato nombre:total, separados por coma</p><input type='text' id='pedidos'>";
+    input.innerHTML += "<button onclick='ej11()'>Enviar</button>";
+}
+function ej11() {
+    let pedidos = document.getElementById("pedidos").value
+    let arrayPedidos = pedidos.split(",")
+    let total = 0
+
+    for(let pedido of arrayPedidos)
+    {
+        if(pedido.indexOf(":")!=-1){
+            total+=parseFloat(pedido.slice(pedido.indexOf(":")+1))
+        }
+    }
+    
+    let mensaje = "La recaudación total es $" + total
+    resultado.innerHTML = mensaje;
 }
